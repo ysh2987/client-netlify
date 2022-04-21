@@ -5,11 +5,12 @@ import Comment from './Comment';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDetailByPosts } from '../../store/detail/detailThunk';
 import dataTypes from '../../dataTypes';
+import Loading from '../common/Loading';
 
 function Detail() {
   const { no } = useParams();
   const dispatch = useDispatch();
-  const { postData } = useSelector((state) => state.detail);
+  const { postData, isLoading } = useSelector((state) => state.detail);
 
   useEffect(() => {
     dispatch(fetchDetailByPosts(no));
@@ -17,6 +18,11 @@ function Detail() {
 
   return (
     <StyledDetail>
+      {isLoading && (
+        <div className="loading-container">
+          <Loading />
+        </div>
+      )}
       {postData && (
         <>
           <h1 className="title">{postData.title}</h1>
@@ -47,7 +53,6 @@ function Detail() {
       )}
     </StyledDetail>
   );
-  // }
 }
 
 export default Detail;
@@ -56,6 +61,11 @@ const StyledDetail = styled.main`
   padding: 3rem 1.5rem;
   max-width: 768px;
   margin: 0 auto;
+  .loading-container {
+    display: flex;
+    height: 60vh;
+    justify-content: center;
+  }
   .title {
     font-size: 2rem;
     font-weight: bold;
