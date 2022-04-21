@@ -63,7 +63,7 @@ function SignUp({ setLoginPage }) {
           onChange={onChange}
           value={nickName}
           type="text"
-          placeholder="비밀번호"
+          placeholder="닉네임"
           autoComplete="new-password"
         />
         <p className="cancel">비밀번호</p>
@@ -81,7 +81,7 @@ function SignUp({ setLoginPage }) {
           onChange={onChange}
           value={pwConfirm}
           type="password"
-          placeholder="비밀번호"
+          placeholder="비밀번호 확인"
           autoComplete="new-password"
         />
         {pw && pwConfirm && pw !== pwConfirm && (
